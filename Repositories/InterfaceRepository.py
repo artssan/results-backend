@@ -28,7 +28,7 @@ class InterfaceRepository(Generic[T]):
         item = self.transformRefs(item)
         if hasattr(item, "_id") and item._id != "":
             myId = item._id
-            _Id = ObjectId(myId)
+            _id = ObjectId(myId)
             colection = self.baseDatos[self.coleccion]
             delattr(item, "_id")
             item = item.__dict__

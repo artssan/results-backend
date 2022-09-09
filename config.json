@@ -1,4 +1,6 @@
 {
   "url-backend": "127.0.0.1",
-  "port": 8080
+  "port": 8080,
+  "data-db-connection": "mongodb+srv://root:2202@results-backend.r6jguqz.mongodb.net/results-backend?retryWrites=true&w=majority",
+  "name-db": "results-backend"
 }

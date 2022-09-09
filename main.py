@@ -5,32 +5,46 @@ from flask_cors import CORS
 import json
 from waitress import serve
 
-from Routes.RoutesMesas import RoutesMesas
+from Controllers.ControllerMesas import ControllerMesas
 
 app = Flask(__name__)
 cors = CORS(app)
 
-rutasMesa = RoutesMesas()
+controladorMesas = ControllerMesas()
 
 # ------------- [[ Rutas de Mesas ]] -------------
 
 @app.route("/mesas", methods = ['GET'])
-rutasMesa.getAll()
+def getMesas():
+	json = controladorMesas.index()
+	return jsonify(json)
 
 @app.route("/mesas", methods = ['POST'])
-rutasMesa.create(request.get_json())
+def postMesas():
+	data = request.get_json()
+	json = controladorMesas.create(data)
+	return jsonify(json)
 
 @app.route("/mesas/<string:id>", methods = ['GET'])
-rutasMesa.get(id)
+def getMesa(id):
+	json = controladorMesas.show(id)
+	return jsonify(json)
 
 @app.route("/mesas/<string:id>", methods = ['PUT'])
-rutasMesa.update(id, request.get_json())
+def putMesas(id):
+	data = request.get_json()
+	json = controladorMesas.update(id,data)
+	return jsonify(json)
 
 @app.route("/mesas/<string:id>", methods = ['DELETE'])
-rutasMesa.delete(id)
+def deleteMesas(id):
+	json = controladorMesas.delete(id)
+	return jsonify(json)
 
 @app.route("/mesas/<string:id>", methods = ['POST'])
-rutasMesa.addVote(id)
+def postVote(id):
+	json = controladorMesas.addVoteToMesa(id)
+	return jsonify(json)
 
 # Función para cargar el archivo config del server
 def loadFileConfig():

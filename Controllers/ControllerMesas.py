@@ -29,16 +29,16 @@ class ControllerMesas():
 		mesaActual = Mesas(self.repositorioMesas.findById(id))
 		mesaActual.cedulas = infoMesa["cedulas"]
 		mesaActual.votos = infoMesa["votos"]
-		return this.repositorioMesas.save(mesaActual)
+		return self.repositorioMesas.save(mesaActual)
 
 	# Método eliminar, usado para eliminar un registro por su ID
 		# Recibe la ID de la mesa a eliminar
 	def delete(self, id):
-		return this.repositorioMesas.delete(id)
+		return self.repositorioMesas.delete(id)
 
 	# Método agregar voto a mesa, usado para agregar un voto a la mesa seleccionada
 		# Recibe la ID de la mesa en la cual se acaba de realizar un voto, sirve para llevar el conteo
 	def addVoteToMesa(self, id):
 		mesaActual = Mesas(self.repositorioMesas.findById(id))
 		mesaActual.votos += 1
-		return this.repositorioMesas.save(mesaActual)
+		return self.repositorioMesas.save(mesaActual)
