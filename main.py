@@ -50,7 +50,7 @@ def postVote(id):
 
 # ------------- [[ Rutas de Partidos ]] -------------
 @app.route("/partido", methods = ['GET'])
-def getPartido():
+def getPartidos():
 	json = controladorPartido.index()
 	return jsonify(json)
 
