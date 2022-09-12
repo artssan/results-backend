@@ -6,11 +6,13 @@ import json
 from waitress import serve
 
 from Controllers.ControllerMesas import ControllerMesas
+from Controllers.ControllerPartidos import ControllerPartidos
 
 app = Flask(__name__)
 cors = CORS(app)
 
 controladorMesas = ControllerMesas()
+controladorPartido = ControllerPartidos()
 
 # ------------- [[ Rutas de Mesas ]] -------------
 
@@ -45,6 +47,37 @@ def deleteMesas(id):
 def postVote(id):
 	json = controladorMesas.addVoteToMesa(id)
 	return jsonify(json)
+
+# ------------- [[ Rutas de Partidos ]] -------------
+@app.route("/partido", methods = ['GET'])
+def getPartido():
+	json = controladorPartido.index()
+	return jsonify(json)
+
+@app.route("/partido", methods = ['POST'])
+def postPartido():
+	data = request.get_json()
+	json = controladorPartido.create(data)
+	return jsonify(json)
+
+@app.route("/partido/<string:id>", methods = ['GET'])
+def getPartido(id):
+	json = controladorPartido.show(id)
+	return jsonify(json)
+
+@app.route("/partido/<string:id>", methods = ['PUT'])
+def putPartido(id):
+	data = request.get_json()
+	json = controladorPartido.update(id,data)
+	return jsonify(json)
+
+@app.route("/partido/<string:id>", methods = ['DELETE'])
+def deletePartido(id):
+	json = controladorPartido.delete(id)
+	return jsonify(json)
+
+
+
 
 # Función para cargar el archivo config del server
 def loadFileConfig():
