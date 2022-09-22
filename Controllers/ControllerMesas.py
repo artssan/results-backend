@@ -41,4 +41,5 @@ class ControllerMesas():
 	def addVoteToMesa(self, id):
 		mesaActual = Mesas(self.repositorioMesas.findById(id))
 		mesaActual.votos += 1
-		return self.repositorioMesas.save(mesaActual)
+		self.repositorioMesas.save(mesaActual)
+		return {"mensaje":"Voto agregado con éxito."}
