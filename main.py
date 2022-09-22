@@ -49,35 +49,33 @@ def postVote(id):
 	return jsonify(json)
 
 # ------------- [[ Rutas de Partidos ]] -------------
-@app.route("/partido", methods = ['GET'])
+
+@app.route("/partidos", methods = ['GET'])
 def getPartidos():
 	json = controladorPartido.index()
 	return jsonify(json)
 
-@app.route("/partido", methods = ['POST'])
+@app.route("/partidos", methods = ['POST'])
 def postPartido():
 	data = request.get_json()
 	json = controladorPartido.create(data)
 	return jsonify(json)
 
-@app.route("/partido/<string:id>", methods = ['GET'])
+@app.route("/partidos/<string:id>", methods = ['GET'])
 def getPartido(id):
 	json = controladorPartido.show(id)
 	return jsonify(json)
 
-@app.route("/partido/<string:id>", methods = ['PUT'])
+@app.route("/partidos/<string:id>", methods = ['PUT'])
 def putPartido(id):
 	data = request.get_json()
 	json = controladorPartido.update(id,data)
 	return jsonify(json)
 
-@app.route("/partido/<string:id>", methods = ['DELETE'])
+@app.route("/partidos/<string:id>", methods = ['DELETE'])
 def deletePartido(id):
 	json = controladorPartido.delete(id)
 	return jsonify(json)
-
-
-
 
 # Función para cargar el archivo config del server
 def loadFileConfig():
